@@ -15,9 +15,10 @@
 void flood_fill(t_map *map, int x, int y, char **visited)
 {
     if (x < 0 || x >= map->width || y < 0 || y >= map->height)
-        return ;
+		return ;
     if (map->grid[y][x] == '1' || visited[y][x] == '1')
-        return ;
+		return ;
+	printf("Filling position: x=%d, y=%d, char=%c\n", x, y, map->grid[y][x]);
     visited[y][x] = '1';
     flood_fill(map, x + 1, y, visited);
     flood_fill(map, x - 1, y, visited);
@@ -63,6 +64,8 @@ int is_path_valid(t_map *map, char **visited)
     int i;
     int j;
 
+	printf("Checking path validity...\n");
+    printf("Start position: x=%d, y=%d\n", map->start_x, map->start_y);
     i = -1;
     while (++i < map->height)
     {
@@ -70,10 +73,17 @@ int is_path_valid(t_map *map, char **visited)
         while (++j < map->width)
         {
             if (map->grid[i][j] == 'C' && !visited[i][j])
+			{
+				printf("Collectible not reachable at: x=%d, y=%d\n", j, i);
                 return (0);
+			}
             if (map->grid[i][j] == 'E' && !visited[i][j])
-                return (0);
+            {
+				printf("Exit not reachable at: x=%d, y=%d\n", j, i);
+			    return (0);
+			}
         }
     }
+	printf("Path validation successful!\n");
     return (1);
 }

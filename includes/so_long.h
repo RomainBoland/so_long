@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:14:13 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/10 14:29:15 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/10 14:50:31 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int init_mlx(t_vars *vars);
 void set_hooks(t_vars *vars);
 
 // map_parser.c
+int check_map_elements(t_map *map);
 int get_map_error(char *filename, t_map *map);
 void error_map(t_map *map, char *message);
 
@@ -63,6 +64,7 @@ int	read_map_content(char *filename, t_map *map);
 int check_map_walls(t_map *map);
 int check_file_extension(char *filename);
 void	init_map(t_map *map);
+int find_player_pos(t_map *map);
 
 // map_validation.c
 int	is_valid_char(char c);

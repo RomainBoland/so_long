@@ -12,6 +12,34 @@
 
 #include "so_long.h"
 
+int check_map_elements(t_map *map)
+{
+    int i;
+    int j;
+    int p_count;
+    int e_count;
+    int c_count;
+
+    p_count = 0;
+    e_count = 0;
+    c_count = 0;
+    i = -1;
+    while (++i < map->height)
+    {
+        j = -1;
+        while (++j < map->width)
+        {
+            if (map->grid[i][j] == 'P')
+                p_count++;
+            if (map->grid[i][j] == 'E')
+                e_count++;
+            if (map->grid[i][j] == 'C')
+                c_count++;
+        }
+    }
+    return (p_count == 1 && e_count == 1 && c_count > 0);
+}
+
 int get_map_error(char *filename, t_map *map)
 {
     init_map(map);
@@ -25,6 +53,10 @@ int get_map_error(char *filename, t_map *map)
         error_map(map, "Invalid map content");
     if (!check_map_chars(map))
         error_map(map, "Invalid characters in map");
+    if (!check_map_elements(map))
+        error_map(map, "Map must have 1 player, 1 exit and at least 1 collectible");
+    if (!find_player_pos(map))  // Add this BEFORE path check
+        error_map(map, "Player position error");
     if (!check_map_walls(map))
         error_map(map, "Map must be surrounded by walls");
     if (!check_path(map))

@@ -12,6 +12,29 @@
 
 #include "so_long.h"
 
+int find_player_pos(t_map *map)
+{
+    int i;
+    int j;
+
+    i = -1;
+    while (++i < map->height)
+    {
+        j = -1;
+        while (++j < map->width)
+        {
+            if (map->grid[i][j] == 'P')
+            {
+                map->start_x = j;
+                map->start_y = i;
+                printf("Found player at: x=%d, y=%d\n", j, i);
+                return (1);
+            }
+        }
+    }
+    return (0);
+}
+
 int check_map_walls(t_map *map)
 {
     int i;
