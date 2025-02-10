@@ -12,6 +12,17 @@
 
 #include "so_long.h"
 
+int init_game(t_game *game, t_vars *vars, t_map *map)
+{
+    game->vars = vars;
+    game->map = map;
+    game->collectibles = 0;
+    game->moves = 0;
+    game->game_state = 0;
+    game->last_frame = 0;
+    return (1);
+}
+
 int init_mlx(t_vars *vars)
 {
     vars->mlx = mlx_init();
@@ -26,8 +37,9 @@ int init_mlx(t_vars *vars)
     return (1);
 }
 
-void set_hooks(t_vars *vars)
+void set_hooks(t_vars *vars, t_game *game)
 {
     mlx_hook(vars->win, 17, 0, handle_close, vars);
     mlx_hook(vars->win, 2, 1L<<0, handle_keypress, vars);
+	mlx_expose_hook(vars->win, handle_expose, game);
 }

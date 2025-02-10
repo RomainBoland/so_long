@@ -10,3 +10,18 @@
 /*                                                                            */
 /* ************************************************************************** */
 
+#include "so_long.h"
+
+int draw_intro(t_game *game)
+{
+    static float alpha = 0;
+    char *message = "Welcome to so_long";
+    
+    mlx_clear_window(game->vars->mlx, game->vars->win);
+    mlx_string_put(game->vars->mlx, game->vars->win, 
+                   400, 300, 0xFFFFFF - (int)(alpha * 255), message);
+    alpha += 0.01;
+    if (alpha >= 1)
+        game->game_state = 1;
+    return (0);
+}
