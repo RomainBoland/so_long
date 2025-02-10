@@ -20,6 +20,18 @@ int init_game(t_game *game, t_vars *vars, t_map *map)
     game->moves = 0;
     game->game_state = 0;
     game->last_frame = 0;
+
+    printf("Creating window with size: %d x %d\n", map->width * 32, map->height * 32);
+    vars->win = mlx_new_window(vars->mlx, 
+        map->width * 32,    
+        map->height * 32, 
+        "so_long");
+    if (!vars->win)
+    {
+        printf("Failed to create window\n");
+        return (0);
+    }
+    printf("Window created successfully: %p\n", vars->win);
     return (1);
 }
 

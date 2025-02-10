@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:14:13 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/10 15:48:21 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/10 23:34:03 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,9 @@
 #include "../mlx/mlx.h"
 #include <stdio.h>
 #include <fcntl.h>
+
+#define LEFT  0
+#define RIGHT 1
 
 typedef struct s_map
 {
@@ -54,10 +57,24 @@ typedef struct s_player {
     t_anim  anim;       // Animation data
 } t_player;
 
+typedef struct s_player_sprites {
+    void    *run_right[5];    // 6 sprites for running right
+    void    *run_left[5];     // 6 sprites for running left
+    void    *idle_right;      // Standing still facing right
+    void    *idle_left;       // Standing still facing left
+    int     current_frame;     // Current animation frame (0-5)
+    int     direction;        // LEFT or RIGHT
+    int     is_moving;        // 0: idle, 1: running
+} t_player_sprites;
+
 typedef struct s_textures {
-    void    *floor;
-    int     width;  // texture width
-    int     height; // texture height
+    void            *floor;
+    void            *wall;
+    void            *collect;
+    void            *exit;
+    t_player_sprites player;
+    int             width;
+    int             height;
 } t_textures;
 
 typedef struct s_game {
@@ -110,10 +127,16 @@ int	is_valid_char(char c);
 int	check_map_chars(t_map *map);
 void	free_map(t_map *map);
 
+// player_sprite.c
+void free_player_sprites(t_game *game);
+int load_player_run(t_game *game, void **sprites, char **paths);
+int load_player_idle(t_game *game, t_player_sprites *player);
+int load_player_sprites(t_game *game, t_player_sprites *player);
+void draw_player(t_game *game, int x, int y);
+
 // texture_handler.c
-t_tile_size get_tile_size(t_game *game, int win_width, int win_height);
 int handle_expose(t_game *game);
-void draw_map(t_game *game, t_textures *tex);
+void render_game(t_game *game);
 int load_textures(t_game *game, t_textures *tex);
 
 // utils.c

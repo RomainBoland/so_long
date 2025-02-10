@@ -1,0 +1,28 @@
+/* XPM */
+static char *ak6ro_fcmig[] = {
+/* columns rows colors chars-per-pixel */
+"16 14 8 1 ",
+"  c None",
+". c #131327",
+"X c #23427E",
+"o c #2A60C9",
+"O c #347AD0",
+"+ c #3CB1C8",
+"@ c #82EBCF",
+"# c #C9FFF1",
+/* pixels */
+"                ",
+"     XXXXX.     ",
+"    X+++++O.    ",
+"   X#++++OO@.   ",
+"  X@@###@@@Xo.  ",
+"  X@@#oooX+oO.  ",
+"  X@@#oOOX+oO.  ",
+"  .@@#oOXX+oO.  ",
+"  .+@#XXXXOXo.  ",
+"  .++@+++OOXX.  ",
+"   .@oXXXXXO.   ",
+"    .XXXXXX.    ",
+"     ......     ",
+"                "
+};
