@@ -6,51 +6,31 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:15:00 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/06 11:44:08 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/10 14:23:48 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-typedef struct s_vars {
-    void    *mlx;
-    void    *win;
-}   t_vars;
-
-int handle_close(t_vars *vars)
+int check_args(int argc, char **argv, t_map *map)
 {
-    mlx_destroy_window(vars->mlx, vars->win);
-    mlx_destroy_display(vars->mlx);
-    free(vars->mlx);
-    exit(0);
+    if (argc != 2)
+        error_map(NULL, "Usage: ./so_long [map.ber]");
+    if (!get_map_error(argv[1], map))
+        return (0);
+    return (1);
 }
 
-int handle_keypress(int keysym, t_vars *vars)
-{
-    printf("Key pressed: %d\n", keysym);  // Debug print
-    if (keysym == 65307)    // ESC key
-        handle_close(vars);
-    return (0);
-}
-
-int main(void)
+int main(int argc, char **argv)
 {
     t_vars  vars;
+    t_map   map;
 
-    vars.mlx = mlx_init();
-    if (!vars.mlx)
+    if (!check_args(argc, argv, &map))
         return (1);
-
-    vars.win = mlx_new_window(vars.mlx, 800, 600, "so_long");
-    if (!vars.win)
-    {
-        free(vars.mlx);
+    if (!init_mlx(&vars))
         return (1);
-    }
-
-    mlx_hook(vars.win, 17, 0, handle_close, &vars);  // X button
-    mlx_hook(vars.win, 2, 1L<<0, handle_keypress, &vars);  // Changed from mlx_key_hook to mlx_hook
-
+    set_hooks(&vars);
     mlx_loop(vars.mlx);
     return (0);
 }

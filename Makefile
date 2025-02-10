@@ -8,7 +8,8 @@ MINECRAFT_GREEN = \033[38;5;70m
 RESET = \033[0m
 BOLD = \033[1m
 
-SRC = srcs/main.c
+SRC = srcs/main.c srcs/map_parser.c srcs/map_read.c srcs/map_utils.c srcs/map_validation.c \
+	srcs/map_path.c srcs/render.c srcs/game.c srcs/utils.c srcs/init_game.c
 
 # Create objects directory path
 OBJ_DIR = objects/
