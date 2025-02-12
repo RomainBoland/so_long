@@ -17,7 +17,6 @@ int init_game(t_game *game, t_vars *vars, t_map *map, t_textures *tex)
     game->vars = vars;
     game->map = map;
 	game->tex = tex;
-    game->collectibles = 0;
 	game->collected = 0;
     game->moves = 0;
     game->game_state = 0;

@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int check_map_elements(t_map *map)
+int check_map_elements(t_map *map, t_game *game)
 {
     int i;
     int j;
@@ -37,10 +37,11 @@ int check_map_elements(t_map *map)
                 c_count++;
         }
     }
+	game->collectibles = c_count;
     return (p_count == 1 && e_count == 1 && c_count > 0);
 }
 
-int get_map_error(char *filename, t_map *map)
+int get_map_error(char *filename, t_map *map, t_game *game)
 {
     init_map(map);
     if (!check_file_extension(filename))
@@ -53,7 +54,7 @@ int get_map_error(char *filename, t_map *map)
         error_map(map, "Invalid map content");
     if (!check_map_chars(map))
         error_map(map, "Invalid characters in map");
-    if (!check_map_elements(map))
+    if (!check_map_elements(map, game))
         error_map(map, "Map must have 1 player, 1 exit and at least 1 collectible");
     if (!find_player_pos(map))
         error_map(map, "Player position error");
