@@ -89,29 +89,3 @@ int load_player_sprites(t_game *game, t_player_sprites *player)
     player->is_moving = 0;
     return (1);
 }
-
-void draw_player(t_game *game, int x, int y)
-{
-    void *sprite;
-
-    // Explicitly draw floor first
-    mlx_put_image_to_window(game->vars->mlx, game->vars->win,
-        game->tex->floor, x * TILE_SIZE, y * TILE_SIZE);
-
-    if (game->tex->player.is_moving)
-    {
-        if (game->tex->player.direction == RIGHT)
-            sprite = game->tex->player.run_right[game->tex->player.current_frame];
-        else
-            sprite = game->tex->player.run_left[game->tex->player.current_frame];
-    }
-    else
-    {
-        if (game->tex->player.direction == RIGHT)
-            sprite = game->tex->player.idle_right;
-        else
-            sprite = game->tex->player.idle_left;
-    }
-    mlx_put_image_to_window(game->vars->mlx, game->vars->win,
-        sprite, x * TILE_SIZE, y * TILE_SIZE);
-}

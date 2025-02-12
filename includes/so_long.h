@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:14:13 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/12 15:37:19 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/12 16:03:07 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -134,17 +134,18 @@ void free_player_sprites(t_game *game);
 int load_player_run(t_game *game, void **sprites, char **paths);
 int load_player_idle(t_game *game, t_player_sprites *player);
 int load_player_sprites(t_game *game, t_player_sprites *player);
-void draw_player(t_game *game, int x, int y);
 
 // texture_handler.c
+int load_textures(t_game *game, t_textures *tex);
+
+//render.c
+void draw_player(t_game *game, int x, int y);
 void draw_game_objects(t_game *game);
 void create_map_background(t_game *game);
 void render_map(t_game *game);
-int load_textures(t_game *game, t_textures *tex);
 
 // utils.c
 int handle_close(t_vars *vars);
 int handle_keypress(int keysym, t_vars *vars);
-
 
 #endif

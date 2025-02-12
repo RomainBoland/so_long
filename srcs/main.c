@@ -6,20 +6,11 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:15:00 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/12 15:32:58 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/12 16:00:07 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
-
-void draw_floor(t_game *game, t_textures *tex, int x, int y)
-{
-    mlx_put_image_to_window(game->vars->mlx, 
-                           game->vars->win,
-                           tex->floor, 
-                           x * tex->width,  // multiply by texture size for grid position
-                           y * tex->height);
-}
 
 int check_args(int argc, char **argv, t_map *map)
 {
