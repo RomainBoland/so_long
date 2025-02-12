@@ -55,7 +55,7 @@ int get_map_error(char *filename, t_map *map)
         error_map(map, "Invalid characters in map");
     if (!check_map_elements(map))
         error_map(map, "Map must have 1 player, 1 exit and at least 1 collectible");
-    if (!find_player_pos(map))  // Add this BEFORE path check
+    if (!find_player_pos(map))
         error_map(map, "Player position error");
     if (!check_map_walls(map))
         error_map(map, "Map must be surrounded by walls");

@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:14:13 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/10 23:34:03 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/12 15:37:19 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@
 #include <stdio.h>
 #include <fcntl.h>
 
+#define TILE_SIZE 64
 #define LEFT  0
 #define RIGHT 1
 
@@ -58,8 +59,8 @@ typedef struct s_player {
 } t_player;
 
 typedef struct s_player_sprites {
-    void    *run_right[5];    // 6 sprites for running right
-    void    *run_left[5];     // 6 sprites for running left
+    void    *run_right[6];    // 6 sprites for running right
+    void    *run_left[6];     // 6 sprites for running left
     void    *idle_right;      // Standing still facing right
     void    *idle_left;       // Standing still facing left
     int     current_frame;     // Current animation frame (0-5)
@@ -94,6 +95,7 @@ typedef struct s_tile_size {
 } t_tile_size;
 
 // init_game.c
+int handle_expose(t_game *game);
 int init_game(t_game *game, t_vars *vars, t_map *map);
 int init_mlx(t_vars *vars);
 void set_hooks(t_vars *vars, t_game *game);
@@ -135,8 +137,9 @@ int load_player_sprites(t_game *game, t_player_sprites *player);
 void draw_player(t_game *game, int x, int y);
 
 // texture_handler.c
-int handle_expose(t_game *game);
-void render_game(t_game *game);
+void draw_game_objects(t_game *game);
+void create_map_background(t_game *game);
+void render_map(t_game *game);
 int load_textures(t_game *game, t_textures *tex);
 
 // utils.c

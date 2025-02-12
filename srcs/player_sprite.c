@@ -17,7 +17,7 @@ void free_player_sprites(t_game *game)
     int i;
 
     i = 0;
-    while (i < 5)  // Changed from 6 to 5
+    while (i < 6)
     {
         if (game->tex->player.run_right[i])
             mlx_destroy_image(game->vars->mlx, game->tex->player.run_right[i]);
@@ -36,9 +36,8 @@ int load_player_run(t_game *game, void **sprites, char **paths)
     int i;
 
     i = 0;
-    while (i < 5)
+    while (i < 6)
     {
-        printf("Trying to load: %s\n", paths[i]);
         sprites[i] = mlx_xpm_file_to_image(game->vars->mlx, 
             paths[i], &game->tex->width, &game->tex->height);
         if (!sprites[i])
@@ -64,42 +63,27 @@ int load_player_idle(t_game *game, t_player_sprites *player)
 
 int load_player_sprites(t_game *game, t_player_sprites *player)
 {
-    char *right_paths[5];
-    char *left_paths[5];
+    char *right_paths[6];
+    char *left_paths[6];
 
-    printf("Loading player sprites...\n");
     right_paths[0] = "sprites/player/player_run_right_1.xpm";
     right_paths[1] = "sprites/player/player_run_right_2.xpm";
     right_paths[2] = "sprites/player/player_run_right_3.xpm";
     right_paths[3] = "sprites/player/player_run_right_4.xpm";
     right_paths[4] = "sprites/player/player_run_right_5.xpm";
+	right_paths[5] = "sprites/player/player_run_right_6.xpm";
     left_paths[0] = "sprites/player/player_run_left_1.xpm";
     left_paths[1] = "sprites/player/player_run_left_2.xpm";
     left_paths[2] = "sprites/player/player_run_left_3.xpm";
     left_paths[3] = "sprites/player/player_run_left_4.xpm";
     left_paths[4] = "sprites/player/player_run_left_5.xpm";
-
+	left_paths[5] = "sprites/player/player_run_left_6.xpm";
     if (!load_player_run(game, player->run_right, right_paths))
-    {
-        printf("Failed to load right running sprites\n");
         return (0);
-    }
-    printf("Right running sprites loaded successfully\n");
-
     if (!load_player_run(game, player->run_left, left_paths))
-    {
-        printf("Failed to load left running sprites\n");
         return (0);
-    }
-    printf("Left running sprites loaded successfully\n");
-
     if (!load_player_idle(game, player))
-    {
-        printf("Failed to load idle sprites\n");
         return (0);
-    }
-    printf("Idle sprites loaded successfully\n");
-
     player->current_frame = 0;
     player->direction = RIGHT;
     player->is_moving = 0;
@@ -109,6 +93,10 @@ int load_player_sprites(t_game *game, t_player_sprites *player)
 void draw_player(t_game *game, int x, int y)
 {
     void *sprite;
+
+    // Explicitly draw floor first
+    mlx_put_image_to_window(game->vars->mlx, game->vars->win,
+        game->tex->floor, x * TILE_SIZE, y * TILE_SIZE);
 
     if (game->tex->player.is_moving)
     {
@@ -125,5 +113,5 @@ void draw_player(t_game *game, int x, int y)
             sprite = game->tex->player.idle_left;
     }
     mlx_put_image_to_window(game->vars->mlx, game->vars->win,
-        sprite, x * game->tex->width, y * game->tex->height);
+        sprite, x * TILE_SIZE, y * TILE_SIZE);
 }

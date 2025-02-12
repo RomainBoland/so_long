@@ -27,7 +27,6 @@ int find_player_pos(t_map *map)
             {
                 map->start_x = j;
                 map->start_y = i;
-                printf("Found player at: x=%d, y=%d\n", j, i);
                 return (1);
             }
         }

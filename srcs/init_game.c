@@ -21,17 +21,12 @@ int init_game(t_game *game, t_vars *vars, t_map *map)
     game->game_state = 0;
     game->last_frame = 0;
 
-    printf("Creating window with size: %d x %d\n", map->width * 32, map->height * 32);
     vars->win = mlx_new_window(vars->mlx, 
-        map->width * 32,    
-        map->height * 32, 
+        map->width * 64,    
+        map->height * 64, 
         "so_long");
     if (!vars->win)
-    {
-        printf("Failed to create window\n");
         return (0);
-    }
-    printf("Window created successfully: %p\n", vars->win);
     return (1);
 }
 
@@ -49,9 +44,15 @@ int init_mlx(t_vars *vars)
     return (1);
 }
 
+int handle_expose(t_game *game)
+{
+    render_map(game);
+    return (0);
+}
+
 void set_hooks(t_vars *vars, t_game *game)
 {
-    mlx_hook(vars->win, 17, 0, handle_close, vars);
-    mlx_hook(vars->win, 2, 1L<<0, handle_keypress, vars);
-	mlx_expose_hook(vars->win, handle_expose, game);
+    mlx_hook(vars->win, 17, 0, handle_close, vars);  // Close window
+    mlx_hook(vars->win, 2, 1L<<0, handle_keypress, vars);  // Key press
+    mlx_expose_hook(vars->win, handle_expose, game);  // Window expose
 }
