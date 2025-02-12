@@ -16,19 +16,17 @@ int load_textures(t_game *game, t_textures *tex)
 {
     tex->floor = mlx_xpm_file_to_image(game->vars->mlx, 
         "sprites/floor/wooden.xpm", &tex->width, &tex->height);
-    if (!tex->floor)
-        return (0);
     tex->wall = mlx_xpm_file_to_image(game->vars->mlx, 
         "sprites/wall/wall.xpm", &tex->width, &tex->height);
-    if (!tex->wall)
-        return (0);
+    tex->player = mlx_xpm_file_to_image(game->vars->mlx,
+        "sprites/player/player.xpm", &tex->width, &tex->height);
     tex->collect = mlx_xpm_file_to_image(game->vars->mlx, 
         "sprites/collectible/collectible.xpm", &tex->width, &tex->height);
-    if (!tex->collect)
-        return (0);
     tex->exit = mlx_xpm_file_to_image(game->vars->mlx, 
         "sprites/exit/exit.xpm", &tex->width, &tex->height);
-    if (!tex->exit)
+
+    if (!tex->floor || !tex->wall || !tex->player || 
+        !tex->collect || !tex->exit)
         return (0);
-    return (load_player_sprites(game, &tex->player));
+    return (1);
 }

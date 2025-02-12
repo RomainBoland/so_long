@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:15:00 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/12 16:00:07 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/12 22:18:48 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,18 +29,16 @@ int main(int argc, char **argv)
     t_textures  tex;
 
     if (!check_args(argc, argv, &map))
-        return (1);
+		return (1);
     vars.mlx = mlx_init();
     if (!vars.mlx)
-        return (1);
-    if (!init_game(&game, &vars, &map))
-        return (1);
-    game.tex = &tex;
-    if (!load_textures(&game, &tex))
     {
-        free_map(&map);
+        printf("MLX initialization failed\n");
         return (1);
     }
+	init_game(&game, &vars, &map, &tex);
+    if (!load_textures(&game, &tex))
+        return (1);
     render_map(&game);
     set_hooks(&vars, &game);
     mlx_loop(vars.mlx);
