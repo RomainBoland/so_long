@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "so_long.h"
+#include "so_long_bonus.h"
 
 int check_map_elements(t_map *map, t_game *game)
 {
@@ -45,13 +45,15 @@ int get_map_error(char *filename, t_map *map, t_game *game)
 {
     init_map(map);
     if (!check_file_extension(filename))
-        error_map(map, "Not a .ber file");
+		error_map(map, "Not a .ber file");
     if (!read_map_size(filename, map))
-        error_map(map, "Failed to read map");
+		error_map(map, "Failed to read map");
+	if (!check_map_shape(filename, map))
+		error_map(map, "Map must be rectangular");
     if (!allocate_map_grid(map))
         error_map(map, "Memory allocation failed");
     if (!read_map_content(filename, map))
-        error_map(map, "Invalid map content");
+		error_map(map, "Invalid map content");
     if (!check_map_chars(map))
         error_map(map, "Invalid characters in map");
     if (!check_map_elements(map, game))

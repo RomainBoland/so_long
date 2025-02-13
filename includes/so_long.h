@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:14:13 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/13 11:16:26 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/13 16:10:53 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -115,6 +115,8 @@ void	init_map(t_map *map);
 int find_player_pos(t_map *map);
 
 // map_validation.c
+int validate_line_width(char *line, int expected_width);
+int check_map_shape(char *filename, t_map *map);
 int	is_valid_char(char c);
 int	check_map_chars(t_map *map);
 void	free_map(t_map *map);
@@ -134,9 +136,7 @@ void create_map_background(t_game *game);
 void render_map(t_game *game);
 
 // utils.c
-void display_bold_message(t_game *game, char *msg, int x, int y, int color);
 int handle_close(t_vars *vars);
-void display_message(t_game *game);
 void display_status(t_game *game);
 
 #endif

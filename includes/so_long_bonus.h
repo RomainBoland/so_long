@@ -115,6 +115,8 @@ void	init_map(t_map *map);
 int find_player_pos(t_map *map);
 
 // map_validation.c
+int validate_line_width(char *line, int expected_width);
+int check_map_shape(char *filename, t_map *map);
 int	is_valid_char(char c);
 int	check_map_chars(t_map *map);
 void	free_map(t_map *map);

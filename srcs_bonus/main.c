@@ -6,11 +6,11 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:15:00 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/13 11:24:12 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/13 15:43:10 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../includes/so_long.h"
+#include "so_long_bonus.h"
 
 int check_args(int argc, char **argv, t_map *map, t_game *game)
 {
