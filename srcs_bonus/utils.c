@@ -12,6 +12,26 @@
 
 #include "so_long_bonus.h"
 
+int init_textures(t_textures *tex)
+{
+    tex->floor = NULL;
+    tex->wall = NULL;
+    tex->player_right = NULL;
+    tex->player_left = NULL;
+    tex->flower_left = NULL;
+    tex->flower_right = NULL;
+    tex->enemy_angry_left = NULL;
+    tex->enemy_angry_right = NULL;
+    tex->enemy_idle_left = NULL;
+    tex->enemy_idle_right = NULL;
+    tex->duo_left = NULL;
+    tex->duo_right = NULL;
+    tex->collect = NULL;
+    tex->exit = NULL;
+    tex->exit_red = NULL;
+    return (1);
+}
+
 int handle_close(t_vars *vars)
 {
     mlx_destroy_window(vars->mlx, vars->win);

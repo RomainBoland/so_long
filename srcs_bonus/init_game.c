@@ -28,6 +28,7 @@ int init_game(t_game *game, t_vars *vars, t_map *map, t_textures *tex)
     game->moves = 0;
     game->game_state = 0;
     game->last_frame = 0;
+	game->player_direction = RIGHT;
 
 	init_status(game);
     vars->win = mlx_new_window(vars->mlx, map->width * TILE_SIZE, 

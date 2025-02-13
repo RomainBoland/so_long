@@ -21,6 +21,15 @@
 #define TILE_SIZE 64
 #define LEFT 0
 #define RIGHT 1
+#define ENEMY_ANGRY 0
+#define ENMEMY_IDLE 1
+
+typedef struct s_enemy {
+	int		x;
+	int		y;
+	int		state;
+	int		direction;
+}	t_enemy;
 
 typedef struct s_status {
     int     exit_flash;
@@ -57,6 +66,14 @@ typedef struct s_textures {
     void    *wall;
     void    *player_right;
 	void	*player_left;
+	void	*flower_left;
+	void	*flower_right;
+	void	*enemy_angry_left;
+	void	*enemy_angry_right;
+	void	*enemy_idle_left;
+	void	*enemy_idle_right;
+	void	*duo_left;
+	void	*duo_right;
     void    *collect;
     void    *exit;
 	void	*exit_red;
@@ -68,7 +85,8 @@ typedef struct s_game {
     t_vars      *vars;
     t_map       *map;
 	t_textures  *tex;
-	t_status status;
+	t_status 	status;
+	t_enemy		enemy;
 	int			player_direction;
 	int			remaining;
 	int			collectibles;
@@ -140,6 +158,7 @@ void create_map_background(t_game *game);
 void render_map(t_game *game);
 
 // utils.c
+int init_textures(t_textures *tex);
 void display_bold_message(t_game *game, char *msg, int x, int y, int color);
 int handle_close(t_vars *vars);
 void display_message(t_game *game);
