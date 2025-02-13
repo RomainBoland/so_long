@@ -44,11 +44,7 @@ int move_player(t_game *game, int dx, int dy)
 		return (0);
 	if (game->map->grid[new_y][new_x] == 'E' && 
 		game->collected != game->collectibles)
-	{
-		start_exit_flash(game, new_x, new_y);
-		display_message(game);
 		return (0);
-	}
 	if (check_win_condition(game, new_x, new_y))
 		handle_close(game->vars);
     if (game->map->grid[new_y][new_x] == 'C')
