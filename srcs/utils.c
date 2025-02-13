@@ -35,12 +35,12 @@ void display_status(t_game *game)
     moves_str = ft_itoa(game->moves);
     
     mlx_string_put(game->vars->mlx, game->vars->win, 
-        10, 20, 0xFFFFFF, "Collectibles remaining: ");
+        10, 20, 0xFF0000, "Collectibles remaining: ");
     mlx_string_put(game->vars->mlx, game->vars->win, 
         200, 20, 0xFFFF00, collect_str);
     
     mlx_string_put(game->vars->mlx, game->vars->win, 
-        10, 40, 0xFFFFFF, "Moves: ");
+        10, 40, 0xFF0000, "Moves: ");
     mlx_string_put(game->vars->mlx, game->vars->win, 
         70, 40, 0xFFFF00, moves_str);
     
