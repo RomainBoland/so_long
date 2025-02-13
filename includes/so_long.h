@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:14:13 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/13 10:31:35 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/13 10:40:53 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,6 +130,7 @@ void create_map_background(t_game *game);
 void render_map(t_game *game);
 
 // utils.c
+void display_bold_message(t_game *game, char *msg, int x, int y, int color);
 int handle_close(t_vars *vars);
 void display_message(t_game *game);
 void display_status(t_game *game);
