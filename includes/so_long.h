@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:14:13 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/13 10:40:53 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/13 11:11:37 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,11 +21,13 @@
 #define TILE_SIZE 64
 
 typedef struct s_status {
-    int     exit_flash;          // For exit color feedback
-    char    *current_message;    // For text feedback
-    int     message_time;        // How long to display message
-    int     exit_normal_color;   // Store normal exit color
-} t_status;
+    int     exit_flash;
+    char    *current_message;
+    int     message_time;
+    int     exit_normal_color;
+	int     flash_frames;
+    int     is_flashing;
+}	t_status;
 
 typedef struct s_map
 {
@@ -54,9 +56,10 @@ typedef struct s_textures {
     void    *player;    // Now just one sprite
     void    *collect;
     void    *exit;
+	void	*exit_red;
     int     width;
     int     height;
-} t_textures;
+}	t_textures;
 
 typedef struct s_game {
     t_vars      *vars;
@@ -121,6 +124,8 @@ int handle_keypress(int keysym, t_game *game);
 int move_player(t_game *game, int dx, int dy);
 
 // texture_handler.c
+void start_exit_flash(t_game *game, int new_x, int new_y);
+void handle_exit_flash(t_game *game);
 int load_textures(t_game *game, t_textures *tex);
 
 //render.c

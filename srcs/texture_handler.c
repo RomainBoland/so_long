@@ -12,6 +12,22 @@
 
 #include "so_long.h"
 
+void start_exit_flash(t_game *game, int new_x, int new_y)
+{
+    mlx_put_image_to_window(game->vars->mlx, game->vars->win,
+		game->tex->exit_red, new_x * TILE_SIZE, new_y * TILE_SIZE);
+}
+
+void handle_exit_flash(t_game *game)
+{
+    if (game->status.is_flashing)
+    {
+        game->status.flash_frames--;
+        if (game->status.flash_frames <= 0)
+            game->status.is_flashing = 0;
+    }
+}
+
 int load_textures(t_game *game, t_textures *tex)
 {
     tex->floor = mlx_xpm_file_to_image(game->vars->mlx, 
@@ -24,6 +40,8 @@ int load_textures(t_game *game, t_textures *tex)
         "sprites/collectible/collectible.xpm", &tex->width, &tex->height);
     tex->exit = mlx_xpm_file_to_image(game->vars->mlx, 
         "sprites/exit/exit.xpm", &tex->width, &tex->height);
+	tex->exit_red = mlx_xpm_file_to_image(game->vars->mlx, 
+		"sprites/exit/exit_red.xpm", &tex->width, &tex->height);
 
     if (!tex->floor || !tex->wall || !tex->player || 
         !tex->collect || !tex->exit)
