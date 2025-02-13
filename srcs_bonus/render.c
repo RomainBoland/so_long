@@ -22,8 +22,14 @@ void render_map(t_game *game)
 
 void draw_player(t_game *game, int x, int y)
 {
+    void *sprite;
+
+	if (game->player_direction == LEFT)
+		sprite = game->tex->player_left;
+	else
+		sprite = game->tex->player_right;
     mlx_put_image_to_window(game->vars->mlx, game->vars->win,
-        game->tex->player, x * TILE_SIZE, y * TILE_SIZE);
+        sprite, x * TILE_SIZE, y * TILE_SIZE);
 }
 
 void create_map_background(t_game *game)

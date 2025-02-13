@@ -42,6 +42,10 @@ int move_player(t_game *game, int dx, int dy)
     new_y = game->map->start_y + dy;
     if (game->map->grid[new_y][new_x] == '1')
 		return (0);
+	if (dx < 0)
+		game->player_direction = LEFT;
+    else if (dx > 0)
+		game->player_direction = RIGHT;
 	if (game->map->grid[new_y][new_x] == 'E' && 
 		game->collected != game->collectibles)
 	{

@@ -19,6 +19,8 @@
 #include <fcntl.h>
 
 #define TILE_SIZE 64
+#define LEFT 0
+#define RIGHT 1
 
 typedef struct s_status {
     int     exit_flash;
@@ -53,7 +55,8 @@ typedef struct s_vars
 typedef struct s_textures {
     void    *floor;
     void    *wall;
-    void    *player;    // Now just one sprite
+    void    *player_right;
+	void	*player_left;
     void    *collect;
     void    *exit;
 	void	*exit_red;
@@ -66,6 +69,7 @@ typedef struct s_game {
     t_map       *map;
 	t_textures  *tex;
 	t_status status;
+	int			player_direction;
 	int			remaining;
 	int			collectibles;
     int         collected;

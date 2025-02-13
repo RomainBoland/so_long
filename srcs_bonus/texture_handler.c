@@ -24,8 +24,10 @@ int load_textures(t_game *game, t_textures *tex)
         "sprites/floor/wooden.xpm", &tex->width, &tex->height);
     tex->wall = mlx_xpm_file_to_image(game->vars->mlx, 
         "sprites/wall/wall.xpm", &tex->width, &tex->height);
-    tex->player = mlx_xpm_file_to_image(game->vars->mlx,
+    tex->player_right = mlx_xpm_file_to_image(game->vars->mlx,
         "sprites/player/player_right.xpm", &tex->width, &tex->height);
+	tex->player_left = mlx_xpm_file_to_image(game->vars->mlx,
+		"sprites/player/player_left.xpm", &tex->width, &tex->height);
     tex->collect = mlx_xpm_file_to_image(game->vars->mlx, 
         "sprites/collectible/collectible.xpm", &tex->width, &tex->height);
     tex->exit = mlx_xpm_file_to_image(game->vars->mlx, 
@@ -33,8 +35,8 @@ int load_textures(t_game *game, t_textures *tex)
 	tex->exit_red = mlx_xpm_file_to_image(game->vars->mlx, 
 		"sprites/exit/exit_red.xpm", &tex->width, &tex->height);
 
-    if (!tex->floor || !tex->wall || !tex->player || 
-        !tex->collect || !tex->exit)
+    if (!tex->floor || !tex->wall || !tex->player_right || 
+        !tex->collect || !tex->exit || !tex->player_left)
         return (0);
     return (1);
 }
