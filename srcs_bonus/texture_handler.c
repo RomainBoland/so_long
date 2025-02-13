@@ -41,7 +41,6 @@ int	load_textures2(t_game *game, t_textures *tex)
 
 int load_basic_textures(t_game *game, t_textures *tex)
 {
-    printf("Loading basic textures...\n");
     tex->floor = mlx_xpm_file_to_image(game->vars->mlx, 
         "sprites/floor/wooden.xpm", &tex->width, &tex->height);
     if (!tex->floor)
@@ -59,7 +58,6 @@ int load_basic_textures(t_game *game, t_textures *tex)
 
 int load_extra_textures(t_game *game, t_textures *tex)
 {
-    printf("Loading extra textures...\n");
     tex->player_left = mlx_xpm_file_to_image(game->vars->mlx,
         "sprites/player/player_left.xpm", &tex->width, &tex->height);
     if (!tex->player_left)
@@ -82,19 +80,18 @@ int load_textures(t_game *game, t_textures *tex)
 	init_textures(tex);
     if (!load_basic_textures(game, tex))
     {
-        printf("Failed to load basic textures\n");
+        ft_printf("Failed to load basic textures\n");
         return (0);
     }
     if (!load_extra_textures(game, tex))
     {
-        printf("Failed to load extra textures\n");
+        ft_printf("Failed to load extra textures\n");
         return (0);
     }
     if (!load_textures2(game, tex))
     {
-        printf("Failed to load textures2\n");
+        ft_printf("Failed to load textures2\n");
         return (0);
     }
-    printf("All textures loaded successfully\n");
     return (1);
 }
