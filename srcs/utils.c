@@ -19,19 +19,32 @@ int handle_close(t_vars *vars)
     free(vars->mlx);
     exit(0);
 }
-void display_message(t_game *game, char *msg)
+void display_message(t_game *game)
 {
-    // Display message at top of window
-    mlx_string_put(game->vars->mlx, game->vars->win, 
-        10, 20, 0xFFFFFF, msg);
+    char    *collect;
+    char    *msg;
+    int     x;
+    int     y;
+
+    collect = ft_itoa(game->remaining);
+    msg = ft_strjoin("Collect ", collect);
+    msg = ft_strjoin(msg, " more items!");
+    
+    x = (game->map->width * TILE_SIZE) / 2 - 100;
+    y = (game->map->height * TILE_SIZE) - 30;
+    mlx_string_put(game->vars->mlx, game->vars->win,
+        x, y, 0xFFFFFF, msg);
+    free(collect);
+    free(msg);
 }
 
 void display_status(t_game *game)
 {
-    char *collect_str;
-    char *moves_str;
-    
-    collect_str = ft_itoa(game->collectibles - game->collected);
+    char	*moves_str;
+    char	*collect_str;
+
+    game->remaining = game->collectibles - game->collected;
+	collect_str = ft_itoa(game->remaining);
     moves_str = ft_itoa(game->moves);
     
     mlx_string_put(game->vars->mlx, game->vars->win, 

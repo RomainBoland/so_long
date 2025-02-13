@@ -54,9 +54,6 @@ int init_mlx(t_vars *vars)
 int handle_expose(t_game *game)
 {
     render_map(game);
-	if (game->map->grid[game->map->start_y][game->map->start_x] == 'E' && 
-        game->collected != game->collectibles)
-		display_message(game, "Collect all items first!");
     return (0);
 }
 

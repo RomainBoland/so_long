@@ -40,17 +40,16 @@ int move_player(t_game *game, int dx, int dy)
 
     new_x = game->map->start_x + dx;
     new_y = game->map->start_y + dy;
-
     if (game->map->grid[new_y][new_x] == '1')
 		return (0);
 	if (game->map->grid[new_y][new_x] == 'E' && 
 		game->collected != game->collectibles)
-		return (0);
-	if (check_win_condition(game, new_x, new_y))
 	{
-		printf("Congratulations! You won in %d moves !", game->moves + 1);
-		handle_close(game->vars);
+		display_message(game);
+		return (0);
 	}
+	if (check_win_condition(game, new_x, new_y))
+		handle_close(game->vars);
     if (game->map->grid[new_y][new_x] == 'C')
 		game->collected++;
     game->map->grid[game->map->start_y][game->map->start_x] = '0';

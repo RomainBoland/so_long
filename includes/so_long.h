@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:14:13 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/13 10:06:09 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/13 10:31:35 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,7 @@ typedef struct s_game {
     t_map       *map;
 	t_textures  *tex;
 	t_status status;
+	int			remaining;
 	int			collectibles;
     int         collected;
     int         moves;
@@ -130,7 +131,7 @@ void render_map(t_game *game);
 
 // utils.c
 int handle_close(t_vars *vars);
-void display_message(t_game *game, char *msg);
+void display_message(t_game *game);
 void display_status(t_game *game);
 
 #endif
