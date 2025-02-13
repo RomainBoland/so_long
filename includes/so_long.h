@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:14:13 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/13 11:11:37 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/13 11:16:26 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -125,7 +125,6 @@ int move_player(t_game *game, int dx, int dy);
 
 // texture_handler.c
 void start_exit_flash(t_game *game, int new_x, int new_y);
-void handle_exit_flash(t_game *game);
 int load_textures(t_game *game, t_textures *tex);
 
 //render.c
