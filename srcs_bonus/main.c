@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:15:00 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/13 23:47:10 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/14 00:18:42 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,8 +27,9 @@ int main(int argc, char **argv)
     t_map       map;
     t_game      game;
     t_textures  tex;
+	t_enemy		enemy;
 
-
+	(void)enemy;
     if (!check_args(argc, argv, &map, &game))
 		return (1);
     vars.mlx = mlx_init();

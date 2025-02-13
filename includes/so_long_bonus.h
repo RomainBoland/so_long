@@ -143,6 +143,10 @@ int	is_valid_char(char c);
 int	check_map_chars(t_map *map);
 void	free_map(t_map *map);
 
+// enemy.c
+void init_enemy(t_game *game);
+void find_enemy_pos(t_game *game);
+
 // move_player.c
 int handle_keypress(int keysym, t_game *game);
 int move_player(t_game *game, int dx, int dy);
@@ -152,6 +156,7 @@ void start_exit_flash(t_game *game, int new_x, int new_y);
 int load_textures(t_game *game, t_textures *tex);
 
 //render.c
+void draw_enemy(t_game *game);
 void draw_player(t_game *game, int x, int y);
 void draw_game_objects(t_game *game);
 void create_map_background(t_game *game);

@@ -18,7 +18,7 @@ int check_map_elements(t_map *map, t_game *game)
     int j;
     int p_count;
     int e_count;
-    int c_count;
+	int	c_count;
 
     p_count = 0;
     e_count = 0;

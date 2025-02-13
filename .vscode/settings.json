@@ -1,6 +1,7 @@
 {
 	"files.associations": {
 		"stdio.h": "c",
-		"so_long.h": "c"
+		"so_long.h": "c",
+		"so_long_bonus.h": "c"
 	}
 }

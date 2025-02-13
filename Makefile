@@ -16,7 +16,8 @@ SRC = srcs/main.c srcs/map_parser.c srcs/map_read.c srcs/map_utils.c srcs/map_va
 SRC_BONUS = srcs_bonus/main.c srcs_bonus/map_parser.c srcs_bonus/map_read.c \
 	srcs_bonus/map_utils.c srcs_bonus/map_validation.c srcs_bonus/map_path.c \
 	srcs_bonus/texture_handler.c srcs_bonus/game.c srcs_bonus/utils.c \
-	srcs_bonus/init_game.c srcs_bonus/render.c srcs_bonus/move_player.c
+	srcs_bonus/init_game.c srcs_bonus/render.c srcs_bonus/move_player.c \
+	srcs_bonus/enemy.c
 
 OBJ_DIR = objects/
 OBJ_BONUS_DIR = objects_bonus/

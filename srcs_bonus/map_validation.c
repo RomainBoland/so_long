@@ -50,7 +50,7 @@ int check_map_shape(char *filename, t_map *map)
 int	is_valid_char(char c)
 {
 	if (c == '1' || c == '0' || c == 'P' || 
-		c == 'E' || c == 'C' || c == '\n')
+		c == 'E' || c == 'C' || c == '\n' || c == 'X')
 		return (1);
 	return (0);
 }
