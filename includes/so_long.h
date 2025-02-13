@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:14:13 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/12 22:39:20 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/13 10:06:09 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,13 @@
 #include <fcntl.h>
 
 #define TILE_SIZE 64
+
+typedef struct s_status {
+    int     exit_flash;          // For exit color feedback
+    char    *current_message;    // For text feedback
+    int     message_time;        // How long to display message
+    int     exit_normal_color;   // Store normal exit color
+} t_status;
 
 typedef struct s_map
 {
@@ -55,6 +62,7 @@ typedef struct s_game {
     t_vars      *vars;
     t_map       *map;
 	t_textures  *tex;
+	t_status status;
 	int			collectibles;
     int         collected;
     int         moves;
@@ -68,11 +76,11 @@ typedef struct s_tile_size {
 } t_tile_size;
 
 // game.c
-int handle_keypress(int keysym, t_game *game);
-int move_player(t_game *game, int dx, int dy);
+int	check_win_condition(t_game *game, int new_x, int new_y);
 int draw_intro(t_game *game);
 
 // init_game.c
+void init_status(t_game *game);
 int handle_expose(t_game *game);
 int init_game(t_game *game, t_vars *vars, t_map *map, t_textures *tex);
 int init_mlx(t_vars *vars);
@@ -107,6 +115,10 @@ int	is_valid_char(char c);
 int	check_map_chars(t_map *map);
 void	free_map(t_map *map);
 
+// move_player.c
+int handle_keypress(int keysym, t_game *game);
+int move_player(t_game *game, int dx, int dy);
+
 // texture_handler.c
 int load_textures(t_game *game, t_textures *tex);
 
@@ -118,5 +130,7 @@ void render_map(t_game *game);
 
 // utils.c
 int handle_close(t_vars *vars);
+void display_message(t_game *game, char *msg);
+void display_status(t_game *game);
 
 #endif

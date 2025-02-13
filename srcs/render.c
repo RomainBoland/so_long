@@ -17,6 +17,7 @@ void render_map(t_game *game)
     mlx_clear_window(game->vars->mlx, game->vars->win);
     create_map_background(game);
     draw_game_objects(game);
+	display_status(game);
 }
 
 void draw_player(t_game *game, int x, int y)
