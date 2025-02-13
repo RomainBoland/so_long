@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:15:00 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/13 09:57:05 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/13 11:24:12 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int main(int argc, char **argv)
     vars.mlx = mlx_init();
     if (!vars.mlx)
     {
-        printf("MLX initialization failed\n");
+        ft_putstr_fd("MLX initialization failed\n", 2);
         return (1);
     }
 	init_game(&game, &vars, &map, &tex);

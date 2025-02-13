@@ -25,7 +25,7 @@ int load_textures(t_game *game, t_textures *tex)
     tex->wall = mlx_xpm_file_to_image(game->vars->mlx, 
         "sprites/wall/wall.xpm", &tex->width, &tex->height);
     tex->player = mlx_xpm_file_to_image(game->vars->mlx,
-        "sprites/player/player.xpm", &tex->width, &tex->height);
+        "sprites/player/player_right.xpm", &tex->width, &tex->height);
     tex->collect = mlx_xpm_file_to_image(game->vars->mlx, 
         "sprites/collectible/collectible.xpm", &tex->width, &tex->height);
     tex->exit = mlx_xpm_file_to_image(game->vars->mlx, 
