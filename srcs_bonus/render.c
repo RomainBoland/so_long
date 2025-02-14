@@ -64,7 +64,13 @@ void draw_player(t_game *game, int x, int y)
     {
         current_time = time(NULL);
         if (current_time - game->flower_start >= 1)
+		{
             game->flower_active = 0;
+			if (game->player_direction == RIGHT)
+				sprite = game->tex->player_right;
+			else
+				sprite = game->tex->player_left;
+		}
         else
         {
 			if (game->player_direction == RIGHT)
@@ -83,6 +89,7 @@ void draw_player(t_game *game, int x, int y)
 		else
 			sprite = game->tex->player_left;
 	}
+
     mlx_put_image_to_window(game->vars->mlx, game->vars->win,
         sprite, x * TILE_SIZE, y * TILE_SIZE);
 }
@@ -122,33 +129,17 @@ void draw_game_objects(t_game *game)
         while (x < game->map->width)
         {
             if (game->map->grid[y][x] == 'C')
-			{
-				// printf("Trying to draw collectibles...\n");
                 mlx_put_image_to_window(game->vars->mlx, game->vars->win,
                     game->tex->collect, x * TILE_SIZE, y * TILE_SIZE);
-				// printf("Collectibles drawed !\n");
-			}
             else if (game->map->grid[y][x] == 'E')
-            { 
-				// printf("Trying to draw exit\n");
 				mlx_put_image_to_window(game->vars->mlx, game->vars->win,
                     game->tex->exit, x * TILE_SIZE, y * TILE_SIZE);
-				// printf("exit Drawed !\n");
-			}
             else if (game->map->grid[y][x] == 'P')
-			{
-				// printf("Trying to draw player\n");
                 draw_player(game, x, y);
-				// printf("player Drawed !\n");
-			}
 			else if (game->map->grid[y][x] == 'X')
-			{
-				// printf("Trying to draw enemy\n");
 				draw_enemy(game);
-				// printf("enemy Drawed !\n");
-			}
-			x++;
-        }
-        y++;
+		}
+		x++;
     }
+    y++;
 }
