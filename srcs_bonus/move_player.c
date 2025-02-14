@@ -27,7 +27,12 @@ int handle_keypress(int keysym, t_game *game)
         moved = move_player(game, -1, 0);
     else if (keysym == 100 || keysym == 65363)  // D or right arrow
         moved = move_player(game, 1, 0);
-    
+	else if (keysym == 114)
+	{
+		//handle flower (animation with flower_left/right + change enemy state if less than 1 tile away)
+		moved = 1;
+		game->enemy.state = ENMEMY_IDLE;
+	}
     if (moved)
         render_map(game);
     return (0);
@@ -52,6 +57,12 @@ int move_player(t_game *game, int dx, int dy)
 		start_exit_flash(game, new_x, new_y);
 		display_message(game);
 		return (0);
+	}
+	if (game->map->grid[new_y][new_x] == 'X' &&
+		game->enemy.state == 0)
+	{
+		ft_printf("You died... Have you tried pressing r next to Caliwooo ?\n");
+		handle_close(game->vars);
 	}
 	if (check_win_condition(game, new_x, new_y))
 		handle_close(game->vars);

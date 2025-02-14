@@ -31,8 +31,11 @@ int init_game(t_game *game, t_vars *vars, t_map *map, t_textures *tex)
 	game->player_direction = RIGHT;
 
 	init_enemy(game);
-	find_enemy_pos(game);
-
+	if (!find_enemy_pos(game))
+	{
+		error_map(map, "More than one enemy has been found");
+		return(0);
+	}
 	init_status(game);
     vars->win = mlx_new_window(vars->mlx, map->width * TILE_SIZE, 
 								map->height * TILE_SIZE, "so_long");

@@ -20,12 +20,14 @@ void init_enemy(t_game *game)
     game->enemy.direction = RIGHT;      // Default direction
 }
 
-void find_enemy_pos(t_game *game)
+int find_enemy_pos(t_game *game)
 {
     int x;
     int y;
+	int	found;
 
     y = 0;
+	found = 0;
     while (y < game->map->height)
     {
         x = 0;
@@ -33,12 +35,15 @@ void find_enemy_pos(t_game *game)
         {
             if (game->map->grid[y][x] == 'X')
             {
+				if (found == 1)
+					return (0);
+				found++;
                 game->enemy.x = x;
                 game->enemy.y = y;
-                return;
             }
             x++;
         }
         y++;
     }
+	return (1);
 }

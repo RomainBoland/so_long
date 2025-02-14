@@ -32,9 +32,14 @@ int	load_textures2(t_game *game, t_textures *tex)
 		"sprites/player/duo_left.xpm", &tex->width, &tex->height);
 	tex->duo_right = mlx_xpm_file_to_image(game->vars->mlx,
 		"sprites/player/duo_right.xpm", &tex->width, &tex->height);
+	tex->enemy_idle_left = mlx_xpm_file_to_image(game->vars->mlx,
+		"sprites/ennemy/cali_idle_left.xpm", &tex->width, &tex->height);
+	tex->enemy_idle_right = mlx_xpm_file_to_image(game->vars->mlx,
+		"sprites/ennemy/cali_idle_right.xpm", &tex->width, &tex->height);
 	if (!tex->enemy_angry_left || !tex->enemy_angry_right ||
 		!tex->flower_left || !tex->flower_right || 
-		!tex->duo_left || !tex->duo_right)
+		!tex->duo_left || !tex->duo_right || !tex->enemy_idle_left ||
+		!tex->enemy_idle_right)
 		return (0);
 	return (1);
 }
@@ -43,16 +48,12 @@ int load_basic_textures(t_game *game, t_textures *tex)
 {
     tex->floor = mlx_xpm_file_to_image(game->vars->mlx, 
         "sprites/floor/wooden.xpm", &tex->width, &tex->height);
-    if (!tex->floor)
-        return (0);
     tex->wall = mlx_xpm_file_to_image(game->vars->mlx, 
         "sprites/wall/wall.xpm", &tex->width, &tex->height);
-    if (!tex->wall)
-        return (0);
     tex->player_right = mlx_xpm_file_to_image(game->vars->mlx,
         "sprites/player/player_right.xpm", &tex->width, &tex->height);
-    if (!tex->player_right)
-        return (0);
+	if (!tex->floor || !tex->wall || !tex->player_right)
+		return (0);
     return (1);
 }
 

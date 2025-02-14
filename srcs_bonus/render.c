@@ -24,20 +24,23 @@ void draw_enemy(t_game *game)
 {
     void	*sprite;
 
-    // Don't draw if position invalid or no enemy
     if (game->enemy.x == -1 || game->enemy.y == -1)
         return;
-
-    // Update enemy direction based on player position
     if (game->enemy.x > game->map->start_x)
     {
         game->enemy.direction = LEFT;
-        sprite = game->tex->enemy_angry_left;
+		if (game->enemy.state == 0)
+        	sprite = game->tex->enemy_angry_left;
+		else if (game->enemy.state == 1)
+			sprite = game->tex->enemy_idle_left;
     }
     else
     {
         game->enemy.direction = RIGHT;
-        sprite = game->tex->enemy_angry_right;
+		if (game->enemy.state == 0)
+        	sprite = game->tex->enemy_angry_right;
+		else if (game->enemy.state == 1)
+			sprite = game->tex->enemy_idle_right;
     }
 
     mlx_put_image_to_window(game->vars->mlx, game->vars->win,
