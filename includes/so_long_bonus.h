@@ -17,12 +17,13 @@
 #include "../mlx/mlx.h"
 #include <stdio.h>
 #include <fcntl.h>
+#include <time.h>
 
 #define TILE_SIZE 64
 #define LEFT 0
 #define RIGHT 1
 #define ENEMY_ANGRY 0
-#define ENMEMY_IDLE 1
+#define ENEMY_IDLE 1
 
 typedef struct s_enemy {
 	int		x;
@@ -35,9 +36,6 @@ typedef struct s_status {
     int     exit_flash;
     char    *current_message;
     int     message_time;
-    int     exit_normal_color;
-	int     flash_frames;
-    int     is_flashing;
 }	t_status;
 
 typedef struct s_map
@@ -92,6 +90,8 @@ typedef struct s_game {
 	int			collectibles;
     int         collected;
     int         moves;
+	int			flower_active;
+	int			flower_start;
     int         game_state; // 0: intro, 1: playing, 2: won
     long        last_frame; // For timing
 } t_game;
@@ -164,6 +164,8 @@ void render_map(t_game *game);
 
 // render2.c
 void	handle_flower(t_game *game);
+int	is_adjacent(t_game *game, int x1, int y1, int x2, int y2);
+
 // utils.c
 int init_textures(t_textures *tex);
 void display_bold_message(t_game *game, char *msg, int x, int y, int color);

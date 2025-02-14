@@ -29,9 +29,9 @@ int handle_keypress(int keysym, t_game *game)
         moved = move_player(game, 1, 0);
 	else if (keysym == 114)
 	{
-		//handle flower (animation with flower_left/right + change enemy state if less than 1 tile away)
-		moved = 1;
-		game->enemy.state = ENMEMY_IDLE;
+		handle_flower(game);
+		render_map(game);
+		return (0);
 	}
     if (moved)
         render_map(game);
@@ -59,7 +59,7 @@ int move_player(t_game *game, int dx, int dy)
 		return (0);
 	}
 	if (game->map->grid[new_y][new_x] == 'X' &&
-		game->enemy.state == 0)
+		game->enemy.state == ENEMY_ANGRY)
 	{
 		ft_printf("You died... Have you tried pressing r next to Caliwooo ?\n");
 		handle_close(game->vars);

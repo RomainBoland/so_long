@@ -17,32 +17,33 @@ void render_map(t_game *game)
     mlx_clear_window(game->vars->mlx, game->vars->win);
     create_map_background(game);
     draw_game_objects(game);
-	display_status(game);
+    display_status(game);
 }
 
 void draw_enemy(t_game *game)
 {
-    void	*sprite;
+    void    *sprite;
 
     if (game->enemy.x == -1 || game->enemy.y == -1)
-        return;
+		return;
     if (game->enemy.x > game->map->start_x)
     {
         game->enemy.direction = LEFT;
-		if (game->enemy.state == 0)
-        	sprite = game->tex->enemy_angry_left;
-		else if (game->enemy.state == 1)
-			sprite = game->tex->enemy_idle_left;
+        if (game->enemy.state == 0)
+            sprite = game->tex->enemy_angry_left;
+        else if (game->enemy.state == 1)
+            sprite = game->tex->enemy_idle_left;
     }
     else
     {
         game->enemy.direction = RIGHT;
-		if (game->enemy.state == 0)
-        	sprite = game->tex->enemy_angry_right;
-		else if (game->enemy.state == 1)
-			sprite = game->tex->enemy_idle_right;
+        if (game->enemy.state == 0)
+            sprite = game->tex->enemy_angry_right;
+        else if (game->enemy.state == 1)
+            sprite = game->tex->enemy_idle_right;
     }
-
+    if (!sprite)
+        return;
     mlx_put_image_to_window(game->vars->mlx, game->vars->win,
         sprite, game->enemy.x * TILE_SIZE, game->enemy.y * TILE_SIZE);
 }
@@ -50,11 +51,26 @@ void draw_enemy(t_game *game)
 void draw_player(t_game *game, int x, int y)
 {
     void *sprite;
+    time_t current_time;
 
-	if (game->player_direction == LEFT)
-		sprite = game->tex->player_left;
-	else
-		sprite = game->tex->player_right;
+    if (game->flower_active)
+    {
+        current_time = time(NULL);
+        if (current_time - game->flower_start >= 1)
+            game->flower_active = 0;
+        else
+        {
+			if (game->player_direction == RIGHT)
+				sprite = game->tex->flower_right;
+			else
+				sprite = game->tex->flower_left;
+            mlx_put_image_to_window(game->vars->mlx, game->vars->win,
+                sprite, x * TILE_SIZE, y * TILE_SIZE);
+            return;
+        }
+    }
+    sprite = (game->player_direction == RIGHT) ? 
+        game->tex->player_right : game->tex->player_left;
     mlx_put_image_to_window(game->vars->mlx, game->vars->win,
         sprite, x * TILE_SIZE, y * TILE_SIZE);
 }
@@ -94,15 +110,31 @@ void draw_game_objects(t_game *game)
         while (x < game->map->width)
         {
             if (game->map->grid[y][x] == 'C')
+			{
+				// printf("Trying to draw collectibles...\n");
                 mlx_put_image_to_window(game->vars->mlx, game->vars->win,
                     game->tex->collect, x * TILE_SIZE, y * TILE_SIZE);
+				// printf("Collectibles drawed !\n");
+			}
             else if (game->map->grid[y][x] == 'E')
-                mlx_put_image_to_window(game->vars->mlx, game->vars->win,
+            { 
+				// printf("Trying to draw exit\n");
+				mlx_put_image_to_window(game->vars->mlx, game->vars->win,
                     game->tex->exit, x * TILE_SIZE, y * TILE_SIZE);
+				// printf("exit Drawed !\n");
+			}
             else if (game->map->grid[y][x] == 'P')
+			{
+				// printf("Trying to draw player\n");
                 draw_player(game, x, y);
+				// printf("player Drawed !\n");
+			}
 			else if (game->map->grid[y][x] == 'X')
+			{
+				// printf("Trying to draw enemy\n");
 				draw_enemy(game);
+				// printf("enemy Drawed !\n");
+			}
 			x++;
         }
         y++;
