@@ -27,8 +27,7 @@ int init_game(t_game *game, t_vars *vars, t_map *map, t_textures *tex)
 	game->collected = 0;
 	game->remaining = 0;
     game->moves = 0;
-    game->game_state = 0;
-    game->last_frame = 0;
+	game->duo_mode = 0;
 	game->player_direction = RIGHT;
 	game->flower_active = 0;
 	game->flower_start = 0;

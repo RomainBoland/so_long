@@ -53,7 +53,18 @@ void draw_player(t_game *game, int x, int y)
     void *sprite;
     time_t current_time;
 
-    if (game->flower_active)
+	printf("Flower active ? : %d\n", game->flower_active);
+	printf("Enemy state ? : %d\n", game->enemy.state);
+	printf("duo mode ? : %d\n", game->duo_mode);
+
+	if (game->duo_mode)
+	{
+		if (game->player_direction == RIGHT) 
+			sprite = game->tex->duo_right;
+		else
+			sprite = game->tex->duo_left;
+	}
+    else if (game->flower_active)
     {
         current_time = time(NULL);
         if (current_time - game->flower_start >= 1)
@@ -69,8 +80,13 @@ void draw_player(t_game *game, int x, int y)
             return;
         }
     }
-    sprite = (game->player_direction == RIGHT) ? 
-        game->tex->player_right : game->tex->player_left;
+    else 
+	{
+		if (game->player_direction == RIGHT)
+			sprite = game->tex->player_right;
+		else
+			sprite = game->tex->player_left;
+	}
     mlx_put_image_to_window(game->vars->mlx, game->vars->win,
         sprite, x * TILE_SIZE, y * TILE_SIZE);
 }

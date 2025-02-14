@@ -85,6 +85,7 @@ typedef struct s_game {
 	t_textures  *tex;
 	t_status 	status;
 	t_enemy		enemy;
+	int			duo_mode;
 	int			player_direction;
 	int			remaining;
 	int			collectibles;
@@ -92,8 +93,6 @@ typedef struct s_game {
     int         moves;
 	int			flower_active;
 	int			flower_start;
-    int         game_state; // 0: intro, 1: playing, 2: won
-    long        last_frame; // For timing
 } t_game;
 
 typedef struct s_tile_size {

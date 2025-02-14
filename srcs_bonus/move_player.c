@@ -45,12 +45,25 @@ int move_player(t_game *game, int dx, int dy)
 
     new_x = game->map->start_x + dx;
     new_y = game->map->start_y + dy;
+
     if (game->map->grid[new_y][new_x] == '1')
 		return (0);
+
 	if (dx < 0)
 		game->player_direction = LEFT;
     else if (dx > 0)
 		game->player_direction = RIGHT;
+
+	if (new_x == game->enemy.x && new_y == game->enemy.y && 
+		game->enemy.state == ENEMY_IDLE)
+	{
+		game->duo_mode = 1;  // Activate duo mode
+		game->enemy.x = -1;  // Remove enemy from map
+		game->enemy.y = -1;
+		if (game->flower_active == 1)
+			game->flower_active = 0;
+	}
+	
 	if (game->map->grid[new_y][new_x] == 'E' && 
 		game->collected != game->collectibles)
 	{
