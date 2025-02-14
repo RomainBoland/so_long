@@ -53,10 +53,6 @@ void draw_player(t_game *game, int x, int y)
     void *sprite;
     time_t current_time;
 
-	printf("Flower active ? : %d\n", game->flower_active);
-	printf("Enemy state ? : %d\n", game->enemy.state);
-	printf("duo mode ? : %d\n", game->duo_mode);
-
 	if (game->duo_mode)
 	{
 		if (game->player_direction == RIGHT) 
