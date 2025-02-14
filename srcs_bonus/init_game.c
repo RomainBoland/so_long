@@ -32,7 +32,7 @@ int init_game(t_game *game, t_vars *vars, t_map *map, t_textures *tex)
 	game->flower_active = 0;
 	game->flower_start = 0;
 
-    game->remaining = game->collectibles;  // Set initial remaining
+    game->remaining = game->collectibles;
 	init_enemy(game);
 	if (!find_enemy_pos(game))
 	{

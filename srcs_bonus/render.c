@@ -138,8 +138,8 @@ void draw_game_objects(t_game *game)
                 draw_player(game, x, y);
 			else if (game->map->grid[y][x] == 'X')
 				draw_enemy(game);
+			x++;
 		}
-		x++;
+		y++;
     }
-    y++;
 }

@@ -14,13 +14,10 @@
 
 void init_enemy(t_game *game)
 {
-    // printf("Initializing enemy...\n");
     game->enemy.x = -1;
     game->enemy.y = -1;
     game->enemy.state = ENEMY_ANGRY;
     game->enemy.direction = RIGHT;
-    // printf("Enemy initialized: pos=(%d,%d), state=%d, dir=%d\n",
-    //     game->enemy.x, game->enemy.y, game->enemy.state, game->enemy.direction);
 }
 
 int find_enemy_pos(t_game *game)
