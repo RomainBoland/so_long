@@ -74,7 +74,7 @@ int move_player(t_game *game, int dx, int dy)
 	if (game->map->grid[new_y][new_x] == 'X' &&
 		game->enemy.state == ENEMY_ANGRY)
 	{
-		ft_printf("You died... Have you tried pressing r next to Caliwooo ?\n");
+		ft_printf("You died... Have you tried pressing r next to her ?\n");
 		handle_close(game->vars);
 	}
 	if (check_win_condition(game, new_x, new_y))
