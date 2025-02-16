@@ -60,9 +60,7 @@ void display_message(t_game *game)
     msg = ft_strjoin(temp, " more items!");
 	x = (game->map->width * TILE_SIZE) / 2 - 100;
     y = (game->map->height * TILE_SIZE) - 30;
-    
     display_bold_message(game, msg, x, y, 0xFFFFFF);
-    
     free(collect);
     free(temp);
     free(msg);
@@ -76,15 +74,10 @@ void display_status(t_game *game)
 	game->remaining = game->collectibles - game->collected;
 	moves_str = ft_itoa(game->moves);
 	collect_str = ft_itoa(game->remaining);
- 
-	// Collectibles counter
 	display_bold_message(game, "Collectibles remaining: ", 10, 20, 0xFFFFFF);
 	display_bold_message(game, collect_str, 200, 20, 0xFFFF00);
-   
-	// Moves counter
 	display_bold_message(game, "Moves: ", 10, 40, 0xFFFFFF);
 	display_bold_message(game, moves_str, 70, 40, 0xFFFF00);
-   
 	free(collect_str);
 	free(moves_str);
 }
