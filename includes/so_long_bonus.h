@@ -102,7 +102,7 @@ typedef struct s_tile_size {
 
 // game.c
 int	check_win_condition(t_game *game, int new_x, int new_y);
-int draw_intro(t_game *game);
+int handle_keypress(int keysym, t_game *game);
 
 // init_game.c
 void init_status(t_game *game);
@@ -147,7 +147,10 @@ void init_enemy(t_game *game);
 int find_enemy_pos(t_game *game);
 
 // move_player.c
-int handle_keypress(int keysym, t_game *game);
+void handle_idle_enemy(t_game *game, int new_x, int new_y);
+int check_collision(t_game *game, int new_x, int new_y);
+void update_position(t_game *game, int new_x, int new_y);
+void set_direction(t_game *game, int dx);
 int move_player(t_game *game, int dx, int dy);
 
 // texture_handler.c
@@ -156,12 +159,16 @@ int load_textures(t_game *game, t_textures *tex);
 
 // render.c
 void draw_enemy(t_game *game);
-void draw_player(t_game *game, int x, int y);
 void draw_game_objects(t_game *game);
 void create_map_background(t_game *game);
 void render_map(t_game *game);
 
-// render2.c
+// render_player.c
+void *get_direction_sprite(t_game *game, void *right_sprite, void *left_sprite);
+void *get_player_sprite(t_game *game);
+void draw_player(t_game *game, int x, int y);
+
+// handle_flower.c
 void	handle_flower(t_game *game);
 int	is_adjacent(t_game *game, int x1, int y1, int x2, int y2);
 

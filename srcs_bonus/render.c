@@ -48,52 +48,6 @@ void draw_enemy(t_game *game)
         sprite, game->enemy.x * TILE_SIZE, game->enemy.y * TILE_SIZE);
 }
 
-void draw_player(t_game *game, int x, int y)
-{
-    void *sprite;
-    time_t current_time;
-
-	if (game->duo_mode)
-	{
-		if (game->player_direction == RIGHT) 
-			sprite = game->tex->duo_right;
-		else
-			sprite = game->tex->duo_left;
-	}
-    else if (game->flower_active)
-    {
-        current_time = time(NULL);
-        if (current_time - game->flower_start >= 1)
-		{
-            game->flower_active = 0;
-			if (game->player_direction == RIGHT)
-				sprite = game->tex->player_right;
-			else
-				sprite = game->tex->player_left;
-		}
-        else
-        {
-			if (game->player_direction == RIGHT)
-				sprite = game->tex->flower_right;
-			else
-				sprite = game->tex->flower_left;
-            mlx_put_image_to_window(game->vars->mlx, game->vars->win,
-                sprite, x * TILE_SIZE, y * TILE_SIZE);
-            return;
-        }
-    }
-    else 
-	{
-		if (game->player_direction == RIGHT)
-			sprite = game->tex->player_right;
-		else
-			sprite = game->tex->player_left;
-	}
-
-    mlx_put_image_to_window(game->vars->mlx, game->vars->win,
-        sprite, x * TILE_SIZE, y * TILE_SIZE);
-}
-
 void create_map_background(t_game *game)
 {
     int x;

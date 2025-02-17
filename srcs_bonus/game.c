@@ -19,3 +19,29 @@ int	check_win_condition(t_game *game, int new_x, int new_y)
 		return (1);
 	return (0);
 }
+
+int handle_keypress(int keysym, t_game *game)
+{
+    int moved;
+
+    moved = 0;
+    if (keysym == 65307)  // ESC
+        handle_close(game->vars);
+    else if (keysym == 119 || keysym == 65362)  // W or up arrow
+        moved = move_player(game, 0, -1);
+    else if (keysym == 115 || keysym == 65364)  // S or down arrow
+        moved = move_player(game, 0, 1);
+    else if (keysym == 97 || keysym == 65361)   // A or left arrow
+        moved = move_player(game, -1, 0);
+    else if (keysym == 100 || keysym == 65363)  // D or right arrow
+        moved = move_player(game, 1, 0);
+	else if (keysym == 114)
+	{
+		handle_flower(game);
+		render_map(game);
+		return (0);
+	}
+    if (moved)
+        render_map(game);
+    return (0);
+}
