@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:15:00 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/14 13:33:24 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/17 10:06:44 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int check_args(int argc, char **argv, t_map *map, t_game *game)
 {
     if (argc != 2)
-        error_map(NULL, "Usage: ./so_long [map.ber]");
+        error_map(NULL, "Usage: ./so_long_bonus maps_bonus/[map.ber]");
     if (!get_map_error(argv[1], map, game))
         return (0);
     return (1);
