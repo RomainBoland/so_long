@@ -70,7 +70,7 @@ int get_map_error(char *filename, t_map *map, t_game *game)
 void error_map(t_map *map, char *message)
 {
     if (map && map->grid)
-        free_map(map);
+        free_map_error(map);
     ft_putstr_fd("Error:\n", 2);
     ft_putstr_fd(message, 2);
     ft_putstr_fd("\n", 2);

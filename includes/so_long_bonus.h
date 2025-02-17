@@ -140,7 +140,7 @@ int validate_line_width(char *line, int expected_width);
 int check_map_shape(char *filename, t_map *map);
 int	is_valid_char(char c);
 int	check_map_chars(t_map *map);
-void	free_map(t_map *map);
+void	free_map_error(t_map *map);
 
 // enemy.c
 void init_enemy(t_game *game);

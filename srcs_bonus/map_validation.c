@@ -73,7 +73,7 @@ int	check_map_chars(t_map *map)
 	return (1);
 }
 
-void	free_map(t_map *map)
+void	free_map_error(t_map *map)
 {
 	int	i;
 

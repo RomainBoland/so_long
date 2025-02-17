@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:15:00 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/17 10:06:44 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/17 11:50:35 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,16 +27,13 @@ int main(int argc, char **argv)
     t_map       map;
     t_game      game;
     t_textures  tex;
-	t_enemy		enemy;
-	
-	(void)enemy;
+
     if (!check_args(argc, argv, &map, &game))
 		return (1);
     vars.mlx = mlx_init();
 	init_game(&game, &vars, &map, &tex);
     if (!load_textures(&game, &tex))
 		return (1);
-    render_map(&game);
     set_hooks(&vars, &game);
     mlx_loop(vars.mlx);
     return (0);
