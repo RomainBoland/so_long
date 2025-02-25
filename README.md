@@ -65,7 +65,7 @@ Bonus add :
  - Few animation
 
 <p align="center">
-  <img src="sprites/screenshots/ennemyEncounter.png" width="400" alt="Enemy Encounter">
+  <img src="sprites/screenshots/ennemy.png" width="600" alt="Enemy Encounter">
 </p>
 
 ## 🗺️ Map Format
