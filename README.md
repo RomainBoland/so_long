@@ -7,7 +7,10 @@
 
 **so_long** is a charming 2D game created with MinilibX as part of the 42 School curriculum. Navigate through carefully designed maps, collect items, and make your way to the exit while avoiding enemies!
 
-![Game Screenshot](path_to_screenshot.png)
+<p align="center">
+  <img src="sprites/screenshots/full.png" width="400" alt="Gameplay">
+  <img src="sprites/screenshots/ennemyEncounter.png" width="400" alt="Enemy Encounter">
+</p>
 
 ## 🚀 Features
 

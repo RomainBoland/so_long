@@ -41,7 +41,7 @@ int init_game(t_game *game, t_vars *vars, t_map *map, t_textures *tex)
 	}
 	init_status(game);
     vars->win = mlx_new_window(vars->mlx, map->width * TILE_SIZE, 
-								map->height * TILE_SIZE, "so_long");
+								map->height * TILE_SIZE, "so_long_bonus");
     if (!vars->win)
         return (0);
     return (1);
@@ -52,7 +52,7 @@ int init_mlx(t_vars *vars)
     vars->mlx = mlx_init();
     if (!vars->mlx)
         return (0);
-    vars->win = mlx_new_window(vars->mlx, 800, 600, "so_long");
+    vars->win = mlx_new_window(vars->mlx, 800, 600, "so_long_bonus");
     if (!vars->win)
     {
         free(vars->mlx);
