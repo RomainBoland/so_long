@@ -12,11 +12,17 @@
 
 #include "so_long.h"
 
-int handle_close(t_vars *vars)
+int handle_close(void *param)
 {
-    mlx_destroy_window(vars->mlx, vars->win);
-    mlx_destroy_display(vars->mlx);
-    free(vars->mlx);
+	t_game	*game;
+
+	game = (t_game *)param;
+	if (game->map && game->map->grid)
+		free_map(game->map);
+	destroy_textures(game, game->tex);
+    mlx_destroy_window(game->vars->mlx, game->vars->win);
+    mlx_destroy_display(game->vars->mlx);
+    free(game->vars->mlx);
     exit(0);
 }
 

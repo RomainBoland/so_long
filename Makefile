@@ -2,7 +2,7 @@ NAME = so_long
 NAME_BONUS = so_long_bonus
 
 CC = gcc
-CFLAGS = -Wall -Wextra -Werror
+CFLAGS = -Wall -Wextra -Werror -g
 INCLUDES = -I includes/ -I libft/includes/ -I mlx/
 MLX_FLAGS = -Lmlx -lmlx -L/usr/lib -Imlx -lXext -lX11 -lm -lz
 MINECRAFT_GREEN = \033[38;5;70m

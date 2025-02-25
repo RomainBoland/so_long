@@ -6,7 +6,7 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:14:13 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/13 16:10:53 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/25 15:45:55 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,15 +19,6 @@
 #include <fcntl.h>
 
 #define TILE_SIZE 64
-
-typedef struct s_status {
-    int     exit_flash;
-    char    *current_message;
-    int     message_time;
-    int     exit_normal_color;
-	int     flash_frames;
-    int     is_flashing;
-}	t_status;
 
 typedef struct s_map
 {
@@ -65,7 +56,6 @@ typedef struct s_game {
     t_vars      *vars;
     t_map       *map;
 	t_textures  *tex;
-	t_status status;
 	int			remaining;
 	int			collectibles;
     int         collected;
@@ -126,8 +116,8 @@ int handle_keypress(int keysym, t_game *game);
 int move_player(t_game *game, int dx, int dy);
 
 // texture_handler.c
-void start_exit_flash(t_game *game, int new_x, int new_y);
-int load_textures(t_game *game, t_textures *tex);
+void	destroy_textures(t_game *game, t_textures *tex);
+int		load_textures(t_game *game, t_textures *tex);
 
 //render.c
 void draw_player(t_game *game, int x, int y);
@@ -136,7 +126,7 @@ void create_map_background(t_game *game);
 void render_map(t_game *game);
 
 // utils.c
-int handle_close(t_vars *vars);
+int handle_close(void *param);
 void display_status(t_game *game);
 
 #endif

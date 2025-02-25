@@ -30,3 +30,17 @@ int load_textures(t_game *game, t_textures *tex)
         return (0);
     return (1);
 }
+
+void	destroy_textures(t_game *game, t_textures *tex)
+{
+	if (tex->player)
+		mlx_destroy_image(game->vars->mlx, tex->player);
+    if (tex->floor)
+        mlx_destroy_image(game->vars->mlx, tex->floor);
+    if (tex->wall)
+        mlx_destroy_image(game->vars->mlx, tex->wall);
+    if (tex->collect)
+        mlx_destroy_image(game->vars->mlx, tex->collect);
+    if (tex->exit)
+        mlx_destroy_image(game->vars->mlx, tex->exit);
+}

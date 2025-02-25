@@ -12,13 +12,6 @@
 
 #include "so_long.h"
 
-void	init_status(t_game *game)
-{
-	game->status.exit_flash = 0;
-	game->status.current_message = NULL;
-	game->status.message_time = 0;
-}
-
 int init_game(t_game *game, t_vars *vars, t_map *map, t_textures *tex)
 {
     game->vars = vars;
@@ -29,7 +22,6 @@ int init_game(t_game *game, t_vars *vars, t_map *map, t_textures *tex)
     game->game_state = 0;
     game->last_frame = 0;
 
-	init_status(game);
     vars->win = mlx_new_window(vars->mlx, map->width * TILE_SIZE, 
 								map->height * TILE_SIZE, "so_long");
     if (!vars->win)
@@ -59,7 +51,7 @@ int handle_expose(t_game *game)
 
 void set_hooks(t_vars *vars, t_game *game)
 {
-    mlx_hook(vars->win, 17, 0, handle_close, vars);  // Close window
+    mlx_hook(vars->win, 17, 0, handle_close, game);  // Close window
     mlx_hook(vars->win, 2, 1L<<0, handle_keypress, game);  // Key press
     mlx_expose_hook(vars->win, handle_expose, game);  // Window expose
 }

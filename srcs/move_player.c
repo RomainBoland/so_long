@@ -17,8 +17,8 @@ int handle_keypress(int keysym, t_game *game)
     int moved;
 
     moved = 0;
-    if (keysym == 65307)  // ESC
-        handle_close(game->vars);
+    if (keysym == 65307)
+        handle_close(game);
     else if (keysym == 119 || keysym == 65362)  // W or up arrow
         moved = move_player(game, 0, -1);
     else if (keysym == 115 || keysym == 65364)  // S or down arrow
@@ -46,7 +46,7 @@ int move_player(t_game *game, int dx, int dy)
 		game->collected != game->collectibles)
 		return (0);
 	if (check_win_condition(game, new_x, new_y))
-		handle_close(game->vars);
+		handle_close(game);
     if (game->map->grid[new_y][new_x] == 'C')
 		game->collected++;
     game->map->grid[game->map->start_y][game->map->start_x] = '0';
