@@ -1,7 +1,6 @@
 # 🎮 so_long
 
 ![Language](https://img.shields.io/badge/language-C-blue)
-![License](https://img.shields.io/badge/license-MIT-green)
 ![Status](https://img.shields.io/badge/status-completed-brightgreen)
 
 ## 📖 Overview
@@ -49,9 +48,21 @@ make bonus
 ```
 
 ### Running the Game
+For the base game :
 ```bash
 ./so_long maps/map1.ber
 ```
+For the game with bonus :
+```bash
+./so_long_bonus maps_bonus/map1.ber
+```
+
+Bonus add : 
+ - Different player textures based on direction
+ - No or one ennemy (bonus works if not ennemy is added, add 'X' in .ber file to add it)
+ - Interaction with ennemy
+ - Moves counter and collectible left displayed directly on the window
+ - Few animation
 
 ## 🗺️ Map Format
 
