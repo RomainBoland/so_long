@@ -64,7 +64,9 @@ Bonus add :
  - Moves counter and collectible left displayed directly on the window
  - Few animation
 
- ![Gameplay Screenshot](sprites/screenshots/ennemyEncounter.png)
+<p align="center">
+  <img src="sprites/screenshots/ennemyEncounter.png" width="400" alt="Enemy Encounter">
+</p>
 
 ## 🗺️ Map Format
 
