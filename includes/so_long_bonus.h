@@ -13,29 +13,31 @@
 #ifndef SO_LONG_BONUS_H
 # define SO_LONG_BONUS_H
 
-#include "libft.h"
-#include "../mlx/mlx.h"
-#include <stdio.h>
-#include <fcntl.h>
-#include <time.h>
+# include "libft.h"
+# include "../mlx/mlx.h"
+# include <stdio.h>
+# include <fcntl.h>
+# include <time.h>
 
-#define TILE_SIZE 64
-#define LEFT 0
-#define RIGHT 1
-#define ENEMY_ANGRY 0
-#define ENEMY_IDLE 1
+# define TILE_SIZE 64
+# define LEFT 0
+# define RIGHT 1
+# define ENEMY_ANGRY 0
+# define ENEMY_IDLE 1
 
-typedef struct s_enemy {
-	int		x;
-	int		y;
-	int		state;
-	int		direction;         
+typedef struct s_enemy
+{
+	int	x;
+	int	y;
+	int	state;
+	int	direction;
 }	t_enemy;
 
-typedef struct s_status {
-    int     exit_flash;
-    char    *current_message;
-    int     message_time;
+typedef struct s_status
+{
+	int		exit_flash;
+	char	*current_message;
+	int		message_time;
 }	t_status;
 
 typedef struct s_map
@@ -54,15 +56,15 @@ typedef struct s_map
 
 typedef struct s_vars
 {
-    void    *mlx;
-    void    *win;
-}   t_vars;
+	void	*mlx;
+	void	*win;
+}	t_vars;
 
-
-typedef struct s_textures {
-    void    *floor;
-    void    *wall;
-    void    *player_right;
+typedef struct s_textures
+{
+	void	*floor;
+	void	*wall;
+	void	*player_right;
 	void	*player_left;
 	void	*flower_left;
 	void	*flower_right;
@@ -72,33 +74,29 @@ typedef struct s_textures {
 	void	*enemy_idle_right;
 	void	*duo_left;
 	void	*duo_right;
-    void    *collect;
-    void    *exit;
+	void	*collect;
+	void	*exit;
 	void	*exit_red;
-    int     width;
-    int     height;
+	int		width;
+	int		height;
 }	t_textures;
 
-typedef struct s_game {
-    t_vars      *vars;
-    t_map       *map;
-	t_textures  *tex;
-	t_status 	status;
+typedef struct s_game
+{
+	t_vars		*vars;
+	t_map		*map;
+	t_textures	*tex;
+	t_status	status;
 	t_enemy		enemy;
 	int			duo_mode;
 	int			player_direction;
 	int			remaining;
 	int			collectibles;
-    int         collected;
-    int         moves;
+	int			collected;
+	int			moves;
 	int			flower_active;
 	int			flower_start;
-} t_game;
-
-typedef struct s_tile_size {
-    int     width;
-    int     height;
-} t_tile_size;
+}	t_game;
 
 // game.c
 int		check_win_condition(t_game *game, int new_x, int new_y);
@@ -106,7 +104,7 @@ int		handle_keypress(int keysym, t_game *game);
 
 // init_game.c
 void	init_status(t_game *game);
-int 	handle_expose(t_game *game);
+int		handle_expose(t_game *game);
 int		init_game(t_game *game, t_vars *vars, t_map *map, t_textures *tex);
 int		init_mlx(t_vars *vars);
 void	set_hooks(t_vars *vars, t_game *game);
@@ -170,11 +168,11 @@ void	draw_player(t_game *game, int x, int y);
 
 // handle_flower.c
 void	handle_flower(t_game *game);
-int		is_adjacent(t_game *game, int x1, int y1, int x2, int y2);
+int		is_adjacent(int dx, int dy);
 
 // utils.c
 int		init_textures(t_textures *tex);
-void	display_bold_message(t_game *game, char *msg, int x, int y, int color);
+void	display_bold_message(t_game *game, char *msg, int x, int y);
 int		handle_close(void *param);
 void	display_message(t_game *game);
 void	display_status(t_game *game);

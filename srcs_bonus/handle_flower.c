@@ -12,22 +12,20 @@
 
 #include "so_long_bonus.h"
 
-int	is_adjacent(t_game *game, int x1, int y1, int x2, int y2)
+int	is_adjacent(int dx, int dy)
 {
-	int	dx;
-	int	dy;
-	
-	(void)game;
-	dx = abs(x1 - x2);
-	dy = abs(y1 - y2);
-
 	return (dx <= 1 && dy <= 1);
 }
 
 void	handle_flower(t_game *game)
 {
-	if (is_adjacent(game, game->map->start_x, game->map->start_y,
-					game->enemy.x, game->enemy.y))
+	int	dx;
+	int	dy;
+
+	dx = abs(game->map->start_x - game->enemy.x);
+	dy = abs(game->map->start_y - game->enemy.y);
+
+	if (is_adjacent(dx, dy))
 	{
 		game->enemy.state = ENEMY_IDLE;
 		printf("Enemy pacified !\n");
