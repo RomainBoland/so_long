@@ -32,11 +32,19 @@ int init_textures(t_textures *tex)
     return (1);
 }
 
-int handle_close(t_vars *vars)
+int handle_close(void *param)
 {
-    mlx_destroy_window(vars->mlx, vars->win);
-    mlx_destroy_display(vars->mlx);
-    free(vars->mlx);
+	t_game	*game;
+
+	if (param)
+		game = (t_game *)param;
+	else
+		return (0);
+	free_map_error(game->map);
+	destroy_textures(game, game->tex);
+    mlx_destroy_window(game->vars->mlx, game->vars->win);
+    mlx_destroy_display(game->vars->mlx);
+    free(game->vars->mlx);
     exit(0);
 }
 void display_bold_message(t_game *game, char *msg, int x, int y, int color)

@@ -38,7 +38,7 @@ int check_collision(t_game *game, int new_x, int new_y)
         game->enemy.state == ENEMY_ANGRY)
     {
         ft_printf("You died... Have you tried pressing r next to her ?\n");
-        handle_close(game->vars);
+        handle_close(game);
     }
     return (1);
 }
@@ -76,7 +76,7 @@ int move_player(t_game *game, int dx, int dy)
     if (!check_collision(game, new_x, new_y))
         return (0);
     if (check_win_condition(game, new_x, new_y))
-        handle_close(game->vars);
+        handle_close(game);
     update_position(game, new_x, new_y);
     return (1);
 }

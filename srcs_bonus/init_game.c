@@ -69,7 +69,7 @@ int handle_expose(t_game *game)
 
 void set_hooks(t_vars *vars, t_game *game)
 {
-    mlx_hook(vars->win, 17, 0, handle_close, vars);  // Close window
-    mlx_hook(vars->win, 2, 1L<<0, handle_keypress, game);  // Key press
-    mlx_expose_hook(vars->win, handle_expose, game);  // Window expose
+	mlx_hook(vars->win, 17, 0, handle_close, game);
+	mlx_hook(vars->win, 2, 1L<<0, handle_keypress, game);
+    mlx_expose_hook(vars->win, handle_expose, game);
 }

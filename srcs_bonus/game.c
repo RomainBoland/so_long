@@ -26,14 +26,14 @@ int handle_keypress(int keysym, t_game *game)
 
     moved = 0;
     if (keysym == 65307)  // ESC
-        handle_close(game->vars);
-    else if (keysym == 119 || keysym == 65362)  // W or up arrow
+        handle_close(game);
+    else if (keysym == 119 || keysym == 65362)
         moved = move_player(game, 0, -1);
-    else if (keysym == 115 || keysym == 65364)  // S or down arrow
+    else if (keysym == 115 || keysym == 65364)
         moved = move_player(game, 0, 1);
-    else if (keysym == 97 || keysym == 65361)   // A or left arrow
+    else if (keysym == 97 || keysym == 65361)
         moved = move_player(game, -1, 0);
-    else if (keysym == 100 || keysym == 65363)  // D or right arrow
+    else if (keysym == 100 || keysym == 65363)
         moved = move_player(game, 1, 0);
 	else if (keysym == 114)
 	{
