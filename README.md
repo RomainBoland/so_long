@@ -31,7 +31,8 @@
 - **0**: Empty spaces (you can move here)
 - **C**: Collectibles (gather all of these to unlock the exit)
 - **E**: Exit (your destination after collecting all items)
-- **X**: Enemy (will cause game over if touched while angry)
+# Only in bonus
+- **X**: Enemy (will cause "game over" if touched while angry)
 
 ## 🛠️ Installation
 
