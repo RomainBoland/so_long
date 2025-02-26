@@ -162,7 +162,7 @@ void	create_map_background(t_game *game);
 void	render_map(t_game *game);
 
 // render_player.c
-void	*get_direction_sprite(t_game *game, void *right_sprite, void *left_sprite);
+void	*get_direction_sprite(t_game *game, void *right, void *left);
 void	*get_player_sprite(t_game *game);
 void	draw_player(t_game *game, int x, int y);
 
