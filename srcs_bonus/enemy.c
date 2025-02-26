@@ -12,38 +12,38 @@
 
 #include "so_long_bonus.h"
 
-void init_enemy(t_game *game)
+void	init_enemy(t_game *game)
 {
-    game->enemy.x = -1;
-    game->enemy.y = -1;
-    game->enemy.state = ENEMY_ANGRY;
-    game->enemy.direction = RIGHT;
+	game->enemy.x = -1;
+	game->enemy.y = -1;
+	game->enemy.state = ENEMY_ANGRY;
+	game->enemy.direction = RIGHT;
 }
 
-int find_enemy_pos(t_game *game)
+int	find_enemy_pos(t_game *game)
 {
-    int x;
-    int y;
+	int	x;
+	int	y;
 	int	found;
 
-    y = 0;
+	y = 0;
 	found = 0;
-    while (y < game->map->height)
-    {
-        x = 0;
-        while (x < game->map->width)
-        {
-            if (game->map->grid[y][x] == 'X')
-            {
+	while (y < game->map->height)
+	{
+		x = 0;
+		while (x < game->map->width)
+		{
+			if (game->map->grid[y][x] == 'X')
+			{
 				if (found == 1)
 					return (0);
 				found++;
-                game->enemy.x = x;
-                game->enemy.y = y;
-            }
-            x++;
-        }
-        y++;
-    }
+				game->enemy.x = x;
+				game->enemy.y = y;
+			}
+			x++;
+		}
+		y++;
+	}
 	return (1);
 }

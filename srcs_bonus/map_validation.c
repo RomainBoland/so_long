@@ -12,45 +12,47 @@
 
 #include "so_long_bonus.h"
 
-int validate_line_width(char *line, int expected_width)
+int	validate_line_width(char *line, int expected_width)
 {
-    int current_width;
+	int	current_width;
 
-    current_width = get_line_width(line);
-    return (current_width == expected_width);
+	current_width = get_line_width(line);
+	return (current_width == expected_width);
 }
 
-int check_map_shape(char *filename, t_map *map)
+int	check_map_shape(char *filename, t_map *map)
 {
-    int     fd;
-    char    *line;
-    int     expected_width;
+	int		fd;
+	char	*line;
+	int		expected_width;
 
-    fd = open(filename, O_RDONLY);
-    if (fd < 0)
-        return (0);
-    line = get_next_line(fd);
-    if (!line)
-        return (0);
-    expected_width = map->width;
-    free(line);
-    while ((line = get_next_line(fd)))
-    {
-        if (!validate_line_width(line, expected_width))
-        {
-            free(line);
-            return (0);
-        }
-        free(line);
-    }
-    close(fd);
-    return (1);
+	fd = open(filename, O_RDONLY);
+	if (fd < 0)
+		return (0);
+	line = get_next_line(fd);
+	if (!line)
+		return (0);
+	expected_width = map->width;
+	free(line);
+	line = get_next_line(fd);
+	while (line)
+	{
+		if (!validate_line_width(line, expected_width))
+		{
+			free(line);
+			return (0);
+		}
+		free(line);
+		line = get_next_line(fd);
+	}
+	close(fd);
+	return (1);
 }
 
 int	is_valid_char(char c)
 {
-	if (c == '1' || c == '0' || c == 'P' || 
-		c == 'E' || c == 'C' || c == '\n' || c == 'X')
+	if (c == '1' || c == '0' || c == 'P'
+		|| c == 'E' || c == 'C' || c == '\n' || c == 'X')
 		return (1);
 	return (0);
 }

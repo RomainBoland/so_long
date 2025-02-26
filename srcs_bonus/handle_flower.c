@@ -24,7 +24,6 @@ void	handle_flower(t_game *game)
 
 	dx = abs(game->map->start_x - game->enemy.x);
 	dy = abs(game->map->start_y - game->enemy.y);
-
 	if (is_adjacent(dx, dy))
 	{
 		game->enemy.state = ENEMY_IDLE;

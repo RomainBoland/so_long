@@ -12,46 +12,46 @@
 
 #include "so_long_bonus.h"
 
-int find_player_pos(t_map *map)
+int	find_player_pos(t_map *map)
 {
-    int i;
-    int j;
+	int	i;
+	int	j;
 
-    i = -1;
-    while (++i < map->height)
-    {
-        j = -1;
-        while (++j < map->width)
-        {
-            if (map->grid[i][j] == 'P')
-            {
-                map->start_x = j;
-                map->start_y = i;
-                return (1);
-            }
-        }
-    }
-    return (0);
+	i = -1;
+	while (++i < map->height)
+	{
+		j = -1;
+		while (++j < map->width)
+		{
+			if (map->grid[i][j] == 'P')
+			{
+				map->start_x = j;
+				map->start_y = i;
+				return (1);
+			}
+		}
+	}
+	return (0);
 }
 
-int check_map_walls(t_map *map)
+int	check_map_walls(t_map *map)
 {
-    int i;
+	int	i;
 
-    i = -1;
-    while (++i < map->width)
-        if (map->grid[0][i] != '1' || map->grid[map->height - 1][i] != '1')
-            return (0);
-    i = -1;
-    while (++i < map->height)
-        if (map->grid[i][0] != '1' || map->grid[i][map->width - 1] != '1')
-            return (0);
-    return (1);
+	i = -1;
+	while (++i < map->width)
+		if (map->grid[0][i] != '1' || map->grid[map->height - 1][i] != '1')
+			return (0);
+	i = -1;
+	while (++i < map->height)
+		if (map->grid[i][0] != '1' || map->grid[i][map->width - 1] != '1')
+			return (0);
+	return (1);
 }
 
-int check_file_extension(char *filename)
+int	check_file_extension(char *filename)
 {
-	int len;
+	int	len;
 
 	len = ft_strlen(filename);
 	if (len < 5)
