@@ -12,7 +12,7 @@
 ## 🚀 Features
 
 - **Smooth tile-based movement** system
-- **Dynamic enemy AI** that reacts to player actions
+- **Dynamic enemy** that reacts to player actions
 - **Special abilities** that can be used to pacify enemies
 - **Beautiful pixel art graphics**
 - **Multiple game endings** based on your choices
