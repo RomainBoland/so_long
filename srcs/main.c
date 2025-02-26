@@ -6,35 +6,35 @@
 /*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/01/31 13:15:00 by rboland           #+#    #+#             */
-/*   Updated: 2025/02/25 15:16:42 by rboland          ###   ########.fr       */
+/*   Updated: 2025/02/25 16:54:38 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
-int check_args(int argc, char **argv, t_map *map, t_game *game)
+int	check_args(int argc, char **argv, t_map *map, t_game *game)
 {
-    if (argc != 2)
-        error_map(NULL, "Usage: ./so_long [map.ber]");
-    if (!get_map_error(argv[1], map, game))
-        return (0);
-    return (1);
+	if (argc != 2)
+		error_map(NULL, "Usage: ./so_long [map.ber]");
+	if (!get_map_error(argv[1], map, game))
+		return (0);
+	return (1);
 }
 
-int main(int argc, char **argv)
+int	main(int argc, char **argv)
 {
-    t_vars      vars;
-    t_map       map;
-    t_game      game;
-    t_textures  tex;
+	t_vars		vars;
+	t_map		map;
+	t_game		game;
+	t_textures	tex;
 
-    if (!check_args(argc, argv, &map, &game))
+	if (!check_args(argc, argv, &map, &game))
 		return (1);
-    vars.mlx = mlx_init();
+	vars.mlx = mlx_init();
 	init_game(&game, &vars, &map, &tex);
-    if (!load_textures(&game, &tex))
+	if (!load_textures(&game, &tex))
 		return (1);
-    set_hooks(&vars, &game);
-    mlx_loop(vars.mlx);
-    return (0);
+	set_hooks(&vars, &game);
+	mlx_loop(vars.mlx);
+	return (0);
 }

@@ -12,7 +12,7 @@
 
 #include "so_long.h"
 
-int get_line_width(char *line)
+int	get_line_width(char *line)
 {
 	int	len;
 
@@ -22,7 +22,7 @@ int get_line_width(char *line)
 	return (len);
 }
 
-int count_height(int fd)
+int	count_height(int fd)
 {
 	char	*line;
 	int		height;
@@ -58,7 +58,7 @@ int	read_map_size(char *filename, t_map *map)
 	return (1);
 }
 
-int allocate_map_grid(t_map *map)
+int	allocate_map_grid(t_map *map)
 {
 	int	i;
 
@@ -87,11 +87,16 @@ int	read_map_content(char *filename, t_map *map)
 	if (fd < 0)
 		return (0);
 	i = 0;
-	while ((line = get_next_line(fd)) && i < map->height)
+	line = get_next_line(fd);
+	while (i < map->height)
 	{
-		ft_strlcpy(map->grid[i], line, map->width + 1);
-		free(line);
-		i++;
+		if (line)
+		{
+			ft_strlcpy(map->grid[i], line, map->width + 1);
+			free(line);
+			i++;
+			line = get_next_line(fd);
+		}
 	}
 	close(fd);
 	return (1);
