@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   get_next_line_bonus.c                              :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rboland <rboland@student.s19.be>           +#+  +:+       +#+        */
+/*   By: rboland <romain.boland@hotmail.com>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/12/01 09:47:42 by rboland           #+#    #+#             */
-/*   Updated: 2025/01/30 10:52:04 by rboland          ###   ########.fr       */
+/*   Updated: 2025/03/06 14:02:13 by rboland          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,6 +84,23 @@ static char	*get_line_and_update_stash(char **stash, char *newline_pos)
 	return (line);
 }
 
+char	*free_stash_error(int fd, char **stash)
+{
+    if (fd == -42)  // Magic value for cleanup
+    {
+        int i;
+        for (i = 0; i < OPEN_MAX; i++)
+        {
+            if (stash[i])
+            {
+                free(stash[i]);
+                stash[i] = NULL;
+            }
+        }
+    }
+	return (NULL);
+}
+
 char	*get_next_line(int fd)
 {
 	char		buff[BUFFER_SIZE + 1];
@@ -92,7 +109,7 @@ char	*get_next_line(int fd)
 	int			bytes_read;
 
 	if (fd < 0 || BUFFER_SIZE <= 0)
-		return (NULL);
+		return (free_stash_error(fd, stash));
 	while (1)
 	{
 		newline_pos = ft_strchr(stash[fd], '\n');

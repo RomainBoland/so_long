@@ -33,13 +33,12 @@ int	check_map_shape(char *filename, t_map *map)
 	if (!line)
 		return (0);
 	expected_width = map->width;
-	free(line);
-	line = get_next_line(fd);
 	while (line)
 	{
 		if (!validate_line_width(line, expected_width))
 		{
 			free(line);
+			get_next_line(-42);
 			return (0);
 		}
 		free(line);
